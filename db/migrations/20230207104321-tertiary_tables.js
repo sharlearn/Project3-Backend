@@ -57,6 +57,14 @@ module.exports = {
         allowNull: false,
         defaultValue: 1,
       },
+      created_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
     });
   },
 

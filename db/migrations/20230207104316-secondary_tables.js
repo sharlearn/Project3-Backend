@@ -52,15 +52,15 @@ module.exports = {
         allowNull: false,
       },
       design_name: {
-        type: Sequelize.CHAR,
-        allowNull: false,
-      },
-      image_url: {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      image_url: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       description: {
-        type: Sequelize.CHAR,
+        type: Sequelize.STRING,
       },
       price: {
         type: Sequelize.INTEGER,
@@ -105,17 +105,19 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable("orders");
     await queryInterface.dropTable("user_addresses");
     await queryInterface.dropTable("designs");
-    await queryInterface.dropTable("orders");
   },
 };

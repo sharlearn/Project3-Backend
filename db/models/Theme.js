@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Themes.init(
     {
       theme: DataTypes.CHAR,
+      created_at: new Date(),
     },
     {
       sequelize,

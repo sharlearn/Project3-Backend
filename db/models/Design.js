@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [1, 30],
+          len: [1, 50],
           notNull: { msg: "Please enter a design name" },
         },
       },
@@ -25,11 +25,11 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      image_url: DataTypes.STRING,
+      image_url: DataTypes.TEXT,
       description: {
         type: DataTypes.STRING,
         validate: {
-          len: [0, 200],
+          len: [0, 300],
         },
       },
       price: {
