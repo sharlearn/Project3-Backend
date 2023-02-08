@@ -110,9 +110,83 @@ module.exports = {
         email: "gregorys@gmail.com",
       },
     ]);
+
+    await queryInterface.bulkInsert("colours", [
+      {
+        colour: "Black",
+      },
+      {
+        colour: "White",
+      },
+      {
+        colour: "Grey",
+      },
+      {
+        colour: "Blue",
+      },
+      {
+        colour: "Navy",
+      },
+      {
+        colour: "Red",
+      },
+      {
+        colour: "Pink",
+      },
+      {
+        colour: "Green",
+      },
+      {
+        colour: "Olive",
+      },
+      {
+        colour: "Yellow",
+      },
+      {
+        colour: "Orange",
+      },
+    ]);
+
+    await queryInterface.bulkInsert("themes", [
+      {
+        theme: "Food",
+      },
+      {
+        theme: "Nature",
+      },
+      {
+        theme: "Typography",
+      },
+      {
+        theme: "Tattoo",
+      },
+      {
+        theme: "Science",
+      },
+      {
+        theme: "Gaming",
+      },
+      {
+        theme: "Animals",
+      },
+      {
+        theme: "Abstract",
+      },
+      {
+        theme: "Cute",
+      },
+      {
+        theme: "Space",
+      },
+      {
+        theme: "Ocean",
+      },
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("users");
+    await queryInterface.bulkDelete("colours", null, {});
+    await queryInterface.bulkDelete("themes", null, {});
   },
 };

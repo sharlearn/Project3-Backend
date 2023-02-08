@@ -34,9 +34,57 @@ module.exports = {
         defaultValue: new Date(),
       },
     });
+
+    await queryInterface.createTable("themes", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      theme: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+    });
+
+    await queryInterface.createTable("colours", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      colour: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+    });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("users");
+    await queryInterface.dropTable("themes");
+    await queryInterface.dropTable("colours");
   },
 };
