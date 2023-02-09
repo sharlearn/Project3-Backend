@@ -3,6 +3,99 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert("user_addresses", [
+      {
+        user_id: "a4ac0d81-5389-4fd8-8b06-1827d376c777",
+        type: "mailing",
+        address: "64D Kallang Pudding Road 04-00 Tannery Building",
+      },
+      {
+        user_id: "16026ef0-3011-40dd-884a-54dda5bb7c6e",
+        type: "mailing",
+        address: "336 Smith Street #05-308 New Bridge Centre",
+      },
+      {
+        user_id: "16026ef0-3011-40dd-884a-54dda5bb7c6e",
+        type: "billing",
+        address: "43 Jalan Merah Saga #02-70",
+      },
+      {
+        user_id: "5f3822fb-df88-4f08-960c-9d2912ca5608",
+        type: "mailing",
+        address: "40 Horne Road Meyson Building",
+      },
+      {
+        user_id: "f3a8f50d-c107-4676-9478-b9c56f642de8",
+        type: "mailing",
+        address: "100 Lor 23 Geylang #05-03",
+      },
+      {
+        user_id: "49d1d080-2c1a-4c23-909f-75ddbbbabbec",
+        type: "mailing",
+        address: "205 River Valley Road #01-76",
+      },
+      {
+        user_id: "49d1d080-2c1a-4c23-909f-75ddbbbabbec",
+        type: "mailing",
+        address: "190 Middle Road, #15-02, Fortune Centre",
+      },
+      {
+        user_id: "387b708f-edbe-48d1-a2f4-4f7f4aad498e",
+        type: "mailing",
+        address: "Blk 2021 Bukit Batok Street 23, 01-216",
+      },
+      {
+        user_id: "387b708f-edbe-48d1-a2f4-4f7f4aad498e",
+        type: "billing",
+        address: "Blk 2021 Bukit Batok Street 23, 01-216",
+      },
+      {
+        user_id: "c03ade38-288f-4559-9058-6c8e9fee0773",
+        type: "mailing",
+        address: "261 Waterloo Street Waterloo Centre #04-37 Waterloo Centre",
+      },
+      {
+        user_id: "3360b954-0d20-4444-8a75-3e9bc1c6c39e",
+        type: "mailing",
+        address: "325A Beach Road",
+      },
+      {
+        user_id: "eba46302-8e69-4edf-a720-a05b696bfe57",
+        type: "mailing",
+        address: "19 Burn Rd #05-01",
+      },
+      {
+        user_id: "a37a3442-8db1-4597-b64d-071770bab32c",
+        type: "mailing",
+        address: "564A Balestier Rd",
+      },
+      {
+        user_id: "58d3147a-50cc-4b3e-8104-353eec247b8c",
+        type: "mailing",
+        address: "14 Fan Yoong Road",
+      },
+      {
+        user_id: "e02624ca-837d-4708-9276-74d4158f632a",
+        type: "mailing",
+        address: "350 Orchard Road #11-08 Shaw House",
+      },
+      {
+        user_id: "7289aa0b-4177-4ac9-875c-7692e84c0228",
+        type: "mailing",
+        address: "Kewalram Hillview 120 Hillview Avenue #05-01",
+      },
+      {
+        user_id: "2b880649-0329-4b32-a791-7a5f13bf46f9",
+        type: "mailing",
+        address: "391B Orchard Road #23-01",
+      },
+      {
+        user_id: "4ad97cbf-251e-4986-95f8-50463f36cd32",
+        type: "mailing",
+        address: "German Centre 25 International Business Park #03-77",
+      },
+    ]);
+
     await queryInterface.bulkInsert("designs", [
       {
         design_name: "Starry Cloud",
@@ -816,6 +909,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("user_addresses");
     await queryInterface.bulkDelete("designs");
   },
 };
