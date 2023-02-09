@@ -29,7 +29,11 @@ class DesignController extends BaseController {
       selectedThemeIds,
     } = req.body;
     try {
-      const newDesign = await this.model.create({
+      const selectedThemes = await this.themeModel.findAll({
+        where: { id: selectedThemeIds },
+      });
+
+      const newDesign = await this.designModel.create({
         design_name: designName,
         image_url: imageUrl,
         description: description,
@@ -37,9 +41,10 @@ class DesignController extends BaseController {
         price: price,
       });
 
-      await newDesign.setThemes(selectedThemeIds);
+      await newDesign.setThemes(selectedThemes);
 
       let data = await this.designModel.findAll();
+
       return res.json(data);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });

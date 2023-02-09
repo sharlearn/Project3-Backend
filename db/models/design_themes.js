@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Design_themes extends Model {
     static associate(models) {
       this.belongsTo(models.design, { foreignKey: "design_id" });
-      this.belongsTo(models.theme, { foreignKey: "themes_id" });
+      this.belongsTo(models.theme, { foreignKey: "theme_id" });
     }
   }
   Design_themes.init(
