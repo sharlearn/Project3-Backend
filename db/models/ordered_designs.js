@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.order, { foreignKey: "order_id" });
       this.belongsTo(models.design, { foreignKey: "design_id" });
-      this.belongsTo(models.colours, { foreignKey: "colour_id" });
+      this.belongsTo(models.colour, { foreignKey: "colour_id" });
     }
   }
-  Design_themes.init(
+  Ordered_designs.init(
     {
       order_id: DataTypes.INTEGER,
       design_id: DataTypes.INTEGER,
