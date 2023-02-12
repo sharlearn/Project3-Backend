@@ -9,8 +9,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Design_themes.init(
     {
-      theme_id: DataTypes.INTEGER,
-      design_id: DataTypes.INTEGER,
+      design_id: {
+        type: DataTypes.INTEGER,
+        references: { model: "designs", key: "id" },
+      },
+      theme_id: {
+        type: DataTypes.INTEGER,
+        references: { model: "themes", key: "id" },
+      },
     },
     {
       sequelize,

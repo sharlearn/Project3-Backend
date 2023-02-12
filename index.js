@@ -9,12 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./db/models/index");
-const { design, theme } = db;
+const { design, theme, user } = db;
 
 const DesignController = require("./controllers/designController");
 const DesignRouter = require("./routers/designRouter");
 
-const designController = new DesignController(design, theme);
+const designController = new DesignController(design, theme, user);
 const designRouter = new DesignRouter(designController, express).routes();
 
 app.use("/design", designRouter);

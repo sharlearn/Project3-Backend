@@ -10,9 +10,21 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ordered_designs.init(
     {
-      order_id: DataTypes.INTEGER,
-      design_id: DataTypes.INTEGER,
-      colour_id: DataTypes.INTEGER,
+      order_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "orders",
+          key: "id",
+        },
+      },
+      design_id: {
+        type: DataTypes.INTEGER,
+        references: { model: "designs", key: "id" },
+      },
+      colour_id: {
+        type: DataTypes.INTEGER,
+        references: { model: "colours", key: "id" },
+      },
       quantity: DataTypes.INTEGER,
     },
     {

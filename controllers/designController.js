@@ -1,10 +1,28 @@
-const BaseController = require("./baseController");
-
-class DesignController extends BaseController {
-  constructor(designModel, themeModel) {
-    super(designModel);
+class DesignController {
+  constructor(designModel, themeModel, userModel) {
     this.designModel = designModel;
     this.themeModel = themeModel;
+    this.userModel = userModel;
+  }
+
+  //Retrieve all designs
+  async getAllDesigns(req, res) {
+    try {
+      const output = await this.designModel.findAll({
+        include: [
+          {
+            model: this.userModel,
+          },
+          {
+            model: this.themeModel,
+            through: { attributes: [] },
+          },
+        ],
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
   }
 
   // Retrieve specific design
