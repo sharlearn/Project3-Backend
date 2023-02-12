@@ -15,7 +15,7 @@ class DesignController {
           },
           {
             model: this.themeModel,
-            attributes: ["theme"],
+            through: { attributes: [] },
           },
         ],
       });
