@@ -33,6 +33,7 @@ module.exports = {
     await queryInterface.createTable("ordered_designs", {
       design_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "designs",
           key: "id",
@@ -40,6 +41,7 @@ module.exports = {
       },
       colour_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "colours",
           key: "id",
@@ -47,6 +49,7 @@ module.exports = {
       },
       order_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "orders",
           key: "id",

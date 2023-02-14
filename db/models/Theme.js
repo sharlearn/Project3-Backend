@@ -1,15 +1,17 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Themes extends Model {
+  class Theme extends Model {
     static associate(models) {
       this.belongsToMany(models.design, { through: "design_themes" });
     }
   }
-  Themes.init(
+  Theme.init(
     {
-      theme: DataTypes.CHAR,
-      created_at: new Date(),
+      theme: {
+        type: DataTypes.CHAR,
+        allowNull: false,
+      },
     },
     {
       sequelize,
@@ -17,5 +19,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return Themes;
+  return Theme;
 };
