@@ -10,7 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // importing DB
 const db = require("./db/models/index");
+
 const { user, design, theme } = db;
+
 
 // importing Routers
 const UserRouter = require("./routers/userRouter");
