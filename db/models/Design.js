@@ -18,13 +18,6 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "Please enter a design name" },
         },
       },
-      user_id: {
-        type: DataTypes.UUID,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
       image_url: DataTypes.TEXT,
       description: {
         type: DataTypes.STRING,
@@ -39,8 +32,6 @@ module.exports = (sequelize, DataTypes) => {
           isDecimal: true,
         },
       },
-      created_at: DataTypes.DATE,
-      updated_at: DataTypes.DATE,
     },
     {
       sequelize,
