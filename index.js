@@ -13,7 +13,6 @@ const db = require("./db/models/index");
 
 const { user, design, theme } = db;
 
-
 // importing Routers
 const UserRouter = require("./routers/userRouter");
 const DesignRouter = require("./routers/designRouter");
@@ -24,7 +23,7 @@ const DesignController = require("./controllers/designController");
 
 // initializing Controllers
 const userController = new UserController(user);
-const designController = new DesignController(design, theme);
+const designController = new DesignController(design, theme, user);
 
 // initializing Routers
 const userRouter = new UserRouter(userController, express).routes();
