@@ -9,9 +9,11 @@ class UserRouter {
 
   routes = () => {
     let router = this.express.Router();
-    router.get("/", this.controller.getAll.bind(this.controller));
+    router.get("/", this.controller.getAllUsers.bind(this.controller));
     router.get("/:userId", this.controller.getOne.bind(this.controller));
     router.post("/", this.controller.addOne.bind(this.controller));
+    // router.post("/:userId/address", )
+    // can include a router to create an addressß
     return router;
   };
 }
