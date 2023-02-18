@@ -36,6 +36,27 @@ class DesignController {
     }
   }
 
+  // Retrieve designs based on theme
+  async getDesignofTheme(req, res) {
+    const { themeId } = req.params;
+    console.log(themeId);
+    try {
+      const designs = await this.themeModel.findByPk(themeId, {
+        include: [
+          {
+            model: this.designModel,
+            through: { attributes: [] },
+          },
+        ],
+      });
+
+      return res.json(designs.designs);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Add new design
   async addOne(req, res) {
     const {

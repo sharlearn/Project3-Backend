@@ -11,6 +11,10 @@ class DesignRouter {
     let router = this.express.Router();
     router.get("/", this.controller.getAllDesigns.bind(this.controller));
     router.get("/:designId", this.controller.getOne.bind(this.controller));
+    router.get(
+      "/theme/:themeId",
+      this.controller.getDesignofTheme.bind(this.controller)
+    );
     router.post("/", this.controller.addOne.bind(this.controller));
     return router;
   };
