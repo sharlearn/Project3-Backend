@@ -46,6 +46,9 @@ class DesignController {
           {
             model: this.designModel,
             through: { attributes: [] },
+            include: {
+              model: this.userModel,
+            },
           },
         ],
       });
