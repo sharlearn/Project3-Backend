@@ -10,30 +10,30 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ordered_design.init(
     {
-      order_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "order",
-          key: "id",
-        },
-      },
-      design_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "design",
-          key: "id",
-        },
-      },
-      colour_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "colour",
-          key: "id",
-        },
-      },
+      // order_id: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: "order",
+      //     key: "id",
+      //   },
+      // },
+      // design_id: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: "design",
+      //     key: "id",
+      //   },
+      // },
+      // colour_id: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: "colour",
+      //     key: "id",
+      //   },
+      // },
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,

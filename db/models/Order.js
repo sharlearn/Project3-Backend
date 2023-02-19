@@ -3,31 +3,32 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
-      this.hasOne(models.user);
-      // this.belongsTo(models.user, { foreignKey: "user_id" });
-      // this.belongsTo(models.user, { as: "buyer", foreignkey: "buyer_id" });
-      this.belongsTo(models.user_address, { foreignKey: "delivery_address" });
-      // getting rid of this.belongTo(models.user_address); and changing it to
-      // this.hasOne(models.user_address); removes user_address_id from being inserted
-      // this.belongsTo(models.user_address);
+      this.belongsTo(models.user);
+      this.belongsTo(models.user_address, {
+        foreignKey: "delivery_address",
+      });
       // as: "delivery_address" caused a naming collision error
       // this.belongsTo(models.user_address, { as: "delivery_address" });
       this.belongsToMany(models.design, { through: "ordered_design" });
+      this.belongsToMany(models.colour, { through: "ordered_design" });
+      // hasMany is for the 1-M association to query junction model
+      this.hasMany(models.ordered_design);
     }
   }
   Order.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
+      // order model does not need id
       total_price: DataTypes.INTEGER,
       delivery_address: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "user_address",
+          key: "id",
+        },
       },
+      status: DataTypes.STRING,
       // check if this needs to be buyerId instead of buyer_id
-      // buyer_id: {
       user_id: {
         type: DataTypes.UUID,
         allowNull: false,

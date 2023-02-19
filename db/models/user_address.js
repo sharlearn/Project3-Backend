@@ -4,19 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   class User_address extends Model {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "user_id" });
-      this.hasMany(models.order);
+      this.hasMany(models.order, { foreignKey: "delivery_address" });
     }
   }
   User_address.init(
     {
-      user_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-          model: "user",
-          key: "id",
-        },
-      },
+      // user_address model does not need user_id
       type: {
         type: DataTypes.STRING,
         allowNull: false,
