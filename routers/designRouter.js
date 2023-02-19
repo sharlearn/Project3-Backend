@@ -15,6 +15,10 @@ class DesignRouter {
       "/theme/:themeId",
       this.controller.getDesignofTheme.bind(this.controller)
     );
+    router.get(
+      "/search/:search",
+      this.controller.searchDesigns.bind(this.controller)
+    );
     router.post("/", this.controller.addOne.bind(this.controller));
     return router;
   };

@@ -8,10 +8,9 @@ class OrderController {
 
   // //Retrieve all orders
   async getAllOrders(req, res) {
-    console.log(this.orderModel);
     try {
       const output = await this.orderModel.findAll({
-        include: [{ model: this.userAddressModel, as: delivery_address }],
+        include: [{ model: this.userAddressModel }],
       });
       return res.json(output);
     } catch (err) {
@@ -23,6 +22,7 @@ class OrderController {
   // Retrieve specific order
   async getOneOrder(req, res) {
     const { orderId } = req.params;
+
     try {
       const order = await this.orderModel.findByPk(orderId);
       return res.json(order);
