@@ -1,9 +1,18 @@
 class OrderController {
-  constructor(orderModel, userModel, orderedDesignModel, userAddressModel) {
+  constructor(
+    orderModel,
+    userModel,
+    orderedDesignModel,
+    userAddressModel,
+    designModel,
+    colourModel
+  ) {
     this.orderModel = orderModel;
     this.userModel = userModel;
     this.orderedDesignModel = orderedDesignModel;
     this.userAddressModel = userAddressModel;
+    this.designModel = designModel;
+    this.colourModel = colourModel;
   }
 
   // //Retrieve all orders
@@ -42,13 +51,18 @@ class OrderController {
           type: "mailing",
         },
       });
-
       const order = await this.orderModel.create({
         total_price: totalPrice,
         delivery_address: userAddress.id,
         user_id: userId,
-        status: "test",
+        status: "pending",
       });
+
+      // this updates ordered_design table with design_id = 1, colour_id = 2, quantity = 3
+      await order.setDesigns(1, {
+        through: { colourId: 2, quantity: 3 },
+      });
+
       return res.json(order);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });

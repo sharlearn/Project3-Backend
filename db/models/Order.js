@@ -10,10 +10,14 @@ module.exports = (sequelize, DataTypes) => {
       // as: "delivery_address" caused a naming collision error
       // this.belongsTo(models.user_address, { as: "delivery_address" });
       this.belongsToMany(models.design, { through: "ordered_design" });
+      this.belongsToMany(models.colour, { through: "ordered_design" });
+      // hasMany is for the 1-M association to query junction model
+      this.hasMany(models.ordered_design);
     }
   }
   Order.init(
     {
+      // order model does not need id
       total_price: DataTypes.INTEGER,
       delivery_address: {
         type: DataTypes.INTEGER,

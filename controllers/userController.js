@@ -35,6 +35,16 @@ class UserController extends BaseController {
     }
   }
 
+  //Retrieve all users
+  async getAllUsers(req, res) {
+    try {
+      const output = await this.userModel.findAll();
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Currently we do not allow a user's account to be updated or deleted
 }
 

@@ -58,7 +58,6 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 1,
       },
       created_at: {
         type: Sequelize.DATE,
