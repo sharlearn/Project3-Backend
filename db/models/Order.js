@@ -3,8 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
-      this.belongsTo(models.user, { as: "buyer" });
-      this.belongsTo(models.user_address);
+      this.belongsTo(models.user);
+      this.belongsTo(models.user_address, {
+        foreignKey: "delivery_address",
+      });
       // as: "delivery_address" caused a naming collision error
       // this.belongsTo(models.user_address, { as: "delivery_address" });
       this.belongsToMany(models.design, { through: "ordered_design" });
@@ -16,9 +18,14 @@ module.exports = (sequelize, DataTypes) => {
       delivery_address: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "user_address",
+          key: "id",
+        },
       },
+      status: DataTypes.STRING,
       // check if this needs to be buyerId instead of buyer_id
-      buyer_id: {
+      user_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
