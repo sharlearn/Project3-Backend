@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user);
       this.belongsToMany(models.theme, { through: "design_themes" });
-      this.belongsToMany(models.colour, { through: "ordered_designs" });
+      this.belongsToMany(models.colour, { through: "design_colours" });
     }
   }
   Design.init(

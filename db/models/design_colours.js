@@ -1,24 +1,28 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class design_colours extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Design_colours extends Model {
     static associate(models) {
-      // define association here
+      this.belongsTo(models.design);
+      this.belongsTo(models.colour);
+      // this.belongsToMany(models.order, { through: "ordered_designs" });
     }
   }
-  design_colours.init({
-    design_id: DataTypes.STRING,
-    colour_id: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'design_colours',
-  });
-  return design_colours;
+  Design_colours.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "design_colours",
+      underscored: true,
+      timestamps: false,
+    }
+  );
+  return Design_colours;
 };

@@ -11,7 +11,16 @@ app.use(express.urlencoded({ extended: true }));
 // importing DB
 const db = require("./db/models/index");
 
-const { user, design, theme, order, ordered_design, user_address, colour } = db;
+const {
+  user,
+  design,
+  theme,
+  order,
+  ordered_design,
+  user_address,
+  colour,
+  design_colours,
+} = db;
 
 // importing Routers
 const UserRouter = require("./routers/userRouter");
@@ -32,7 +41,8 @@ const orderController = new OrderController(
   ordered_design,
   user_address,
   design,
-  colour
+  colour,
+  design_colours
 );
 
 // initializing Routers

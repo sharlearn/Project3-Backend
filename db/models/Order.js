@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       // as: "delivery_address" caused a naming collision error
       // this.belongsTo(models.user_address, { as: "delivery_address" });
-      this.belongsToMany(models.design, { through: "ordered_design" });
+      this.belongsToMany(models.design_colours, { through: "ordered_designs" });
     }
   }
   Order.init(

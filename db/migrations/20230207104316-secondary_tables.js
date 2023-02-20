@@ -84,7 +84,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      buyer_id: {
+      user_id: {
         type: Sequelize.UUID,
         references: {
           model: "users",
