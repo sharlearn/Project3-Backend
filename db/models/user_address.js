@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User_address.init(
     {
+      // user_address model does not need user_id
       type: {
         type: DataTypes.STRING,
         allowNull: false,

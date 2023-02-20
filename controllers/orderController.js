@@ -80,7 +80,6 @@ class OrderController {
           type: "mailing",
         },
       });
-
       const order = await this.orderModel.create({
         total_price: totalPrice,
         delivery_address: userAddress.id,

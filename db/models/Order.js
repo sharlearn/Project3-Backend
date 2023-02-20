@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
+      // order model does not need id
       total_price: DataTypes.INTEGER,
       delivery_address: {
         type: DataTypes.INTEGER,
