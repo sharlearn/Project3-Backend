@@ -3,9 +3,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Ordered_design extends Model {
     static associate(models) {
-      this.belongsTo(models.order, { foreignKey: "order_id" });
-      this.belongsTo(models.design, { foreignKey: "design_id" });
-      this.belongsTo(models.colour, { foreignKey: "colour_id" });
+      // this.belongsTo(models.order);
+      // this.belongsTo(models.design);
+      // this.belongsTo(models.colour);
     }
   }
   Ordered_design.init(
@@ -36,8 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       quantity: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false,
       },
+      // size: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
     },
     {
       sequelize,

@@ -113,6 +113,9 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date(),
       },
+      // status: {
+      //   type: Sequelize.STRING,
+      // },
     });
   },
 

@@ -33,7 +33,7 @@ class OrderController {
 
   //Add one order, function to add to order_designs still required
   async addOneOrder(req, res) {
-    const { userId, totalPrice, deliveryAddress } = req.body;
+    const { userId, totalPrice, deliveryAddress, chosenDesigns } = req.body;
 
     try {
       const [userAddress, created] = await this.userAddressModel.findOrCreate({
@@ -49,8 +49,49 @@ class OrderController {
         user_id: userId,
         status: "test",
       });
+<<<<<<< Updated upstream
+=======
+
+      // this updates ordered_design table with design_id = 1, colour_id = 2, quantity = 3
+      // await order.setDesigns(1, {
+      //   through: { colourId: 2, quantity: 3 },
+      // });
+
+      // for (const design of chosenDesigns) {
+      //   await order.setDesigns(design.design_id, {
+      //     through: {
+      //       colour_id: `${design.colourId}`,
+      //       quantity: `${design.quantity}`,
+      //     },
+      //   });
+      // }
+
+      for (const design of chosenDesigns) {
+        console.log(this.colourModel);
+        console.log(this.designModel);
+        const addedDesign = await this.designModel.findAll({
+          where: { id: design.design_id },
+        });
+        console.log(addedDesign);
+
+        const addedColour = await this.colourModel.findAll({
+          where: {
+            id: design.colour_id,
+          },
+        });
+        console.log(addedColour);
+
+        await order
+          .setColours(addedColour, {
+            through: { quantity: `${design.quantity}` },
+          })
+          .setDesigns(addedDesign);
+      }
+
+>>>>>>> Stashed changes
       return res.json(order);
     } catch (err) {
+      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
