@@ -5,10 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "user_id" });
       this.belongsToMany(models.theme, { through: "design_themes" });
-      this.belongsToMany(models.colour, { through: "ordered_designs" });
-      this.belongsToMany(models.order, { through: "ordered_designs" });
-      // hasMany is for the 1-M association to query junction model
-      this.hasMany(models.ordered_design);
+      this.belongsToMany(models.colour, { through: "design_colours" });
     }
   }
   Design.init(

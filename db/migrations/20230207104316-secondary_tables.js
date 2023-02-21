@@ -84,7 +84,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      // buyer_id: {
       user_id: {
         type: Sequelize.UUID,
         references: {
@@ -114,9 +113,9 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date(),
       },
-      status: {
-        type: Sequelize.STRING,
-      },
+      // status: {
+      //   type: Sequelize.STRING,
+      // },
     });
   },
 

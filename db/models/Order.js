@@ -3,16 +3,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
-      this.belongsTo(models.user);
+      this.belongsTo(models.user, { foreignKey: "user_id" });
       this.belongsTo(models.user_address, {
         foreignKey: "delivery_address",
       });
       // as: "delivery_address" caused a naming collision error
       // this.belongsTo(models.user_address, { as: "delivery_address" });
-      this.belongsToMany(models.design, { through: "ordered_design" });
-      this.belongsToMany(models.colour, { through: "ordered_design" });
-      // hasMany is for the 1-M association to query junction model
-      this.hasMany(models.ordered_design);
+      this.belongsToMany(models.design_colours, { through: "ordered_designs" });
     }
   }
   Order.init(

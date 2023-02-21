@@ -14,7 +14,7 @@ class OrderRouter {
     // router.get("/:userId", this.controller.getAllOrders.bind(this.controller));
     // // retrieve a specific order - should only be accessible to that particular user
     // // return an error if the user making the request does not own the order
-    // router.get("/:orderId", this.controller.getOneOrder.bind(this.controller));
+    router.get("/:orderId", this.controller.getOneOrder.bind(this.controller));
     router.post("/", this.controller.addOneOrder.bind(this.controller));
     return router;
   };
