@@ -72,7 +72,6 @@ class OrderController {
   //Add one order
   async addOneOrder(req, res) {
     const { userId, totalPrice, deliveryAddress, chosenDesigns } = req.body;
-
     try {
       const [userAddress, created] = await this.userAddressModel.findOrCreate({
         where: { address: deliveryAddress, user_id: userId },
@@ -86,18 +85,17 @@ class OrderController {
         user_id: userId,
         status: "pending",
       });
-
       for (const design of chosenDesigns) {
-        const addedDesign = await this.designModel.findByPk(design.design_id);
+        const addedDesign = await this.designModel.findByPk(design.designId);
 
-        const addedColour = await this.colourModel.findByPk(design.colour_id);
+        const addedColour = await this.colourModel.findByPk(design.colourId);
 
         await addedDesign.setColours(addedColour);
 
         const designColourId = await this.designColourModel.findOne({
           where: {
-            design_id: design.design_id,
-            colour_id: design.colour_id,
+            design_id: design.designId,
+            colour_id: design.colourId,
           },
         });
 
@@ -108,7 +106,7 @@ class OrderController {
           design_colours_id: designColourId.dataValues.id,
         });
       }
-
+      console.log(order);
       return res.json(order);
     } catch (err) {
       console.log(err);

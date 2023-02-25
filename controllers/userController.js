@@ -45,6 +45,29 @@ class UserController extends BaseController {
     }
   }
 
+  //find or create user based on their email
+  async findorCreateUser(req, res) {
+    const { email, firstName, lastName, username } = req.body;
+    try {
+      const [user, created] = await this.userModel.findOrCreate({
+        where: { email: email },
+        defaults: {
+          username: username,
+          first_name: firstName,
+          last_name: lastName,
+        },
+      });
+
+      if (created) {
+        return res.json({ user: user, msg: "new user created" });
+      }
+
+      return res.json({ user: user, msg: "user found" });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Currently we do not allow a user's account to be updated or deleted
 }
 
