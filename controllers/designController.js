@@ -41,6 +41,7 @@ class DesignController {
   // Search for and retrieve design
   async searchDesigns(req, res) {
     const { search } = req.params;
+    console.log(search);
 
     try {
       const results = await this.designModel.findAll({

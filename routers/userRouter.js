@@ -14,6 +14,10 @@ class UserRouter {
     router.post("/", this.controller.addOne.bind(this.controller));
     // router.post("/:userId/address", )
     // can include a router to create an addressß
+    router.post(
+      "/finduser",
+      this.controller.findorCreateUser.bind(this.controller)
+    );
     return router;
   };
 }
