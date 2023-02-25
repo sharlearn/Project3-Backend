@@ -81,6 +81,27 @@ class DesignController {
     }
   }
 
+  // Retrieve designs based on user_id
+  async getDesignofUser(req, res) {
+    const { userId } = req.params;
+    console.log(userId);
+    try {
+      const designs = await this.designModel.findAll({
+        where: {
+          user_id: userId,
+        },
+        include: {
+          model: this.userModel,
+        },
+      });
+
+      return res.json(designs);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Add new design
   async addOne(req, res) {
     const {
