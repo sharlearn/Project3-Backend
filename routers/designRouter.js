@@ -16,6 +16,10 @@ class DesignRouter {
       this.controller.getDesignofTheme.bind(this.controller)
     );
     router.get(
+      "/artist/:userId",
+      this.controller.getDesignofUser.bind(this.controller)
+    );
+    router.get(
       "/search/:search",
       this.controller.searchDesigns.bind(this.controller)
     );
