@@ -19,14 +19,12 @@ class OrderController {
 
   // //Retrieve all orders
   async getAllOrders(req, res) {
-    console.log(this.orderModel);
     try {
       const output = await this.orderModel.findAll({
         include: [{ model: this.userAddressModel }],
       });
       return res.json(output);
     } catch (err) {
-      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
@@ -64,7 +62,6 @@ class OrderController {
       });
       return res.json(order);
     } catch (err) {
-      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
@@ -106,10 +103,8 @@ class OrderController {
           design_colours_id: designColourId.dataValues.id,
         });
       }
-      console.log(order);
       return res.json(order);
     } catch (err) {
-      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }

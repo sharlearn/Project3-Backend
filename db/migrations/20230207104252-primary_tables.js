@@ -43,7 +43,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       theme: {
-        type: Sequelize.CHAR,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -66,7 +66,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       colour: {
-        type: Sequelize.CHAR,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
