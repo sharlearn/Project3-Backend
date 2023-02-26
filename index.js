@@ -3,6 +3,13 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT;
+const { auth } = require("express-oauth2-jwt-bearer");
+
+const checkJwt = auth({
+  audience: process.env.AUDIENCE,
+  issuerBaseURL: process.env.ISSUER_BASEURL,
+  tokenSigningAlg: process.env.TOKENSIGNINGALG,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -51,7 +58,11 @@ const colourController = new ColourController(colour);
 // initializing Routers
 const userRouter = new UserRouter(userController, express).routes();
 const designRouter = new DesignRouter(designController, express).routes();
-const orderRouter = new OrderRouter(orderController, express).routes();
+const orderRouter = new OrderRouter(
+  orderController,
+  express,
+  checkJwt
+).routes();
 const colourRouter = new ColourRouter(colourController, express).routes();
 
 // Using the routers
