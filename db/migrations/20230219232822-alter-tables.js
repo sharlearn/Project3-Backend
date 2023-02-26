@@ -47,6 +47,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.removeColumn("ordered_designs", "design_colours_id");
     await queryInterface.removeColumn("ordered_designs", "size");
     await queryInterface.addColumn("ordered_designs", "design_id", {
       type: Sequelize.INTEGER,
