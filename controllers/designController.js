@@ -31,7 +31,9 @@ class DesignController {
   async getOne(req, res) {
     const { designId } = req.params;
     try {
-      const design = await this.designModel.findByPk(designId);
+      const design = await this.designModel.findByPk(designId, {
+        include: [{ model: this.userModel }],
+      });
       return res.json(design);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -48,8 +50,8 @@ class DesignController {
         where: {
           design_name: { [Op.iLike]: `${search}%` },
         },
+        include: [{ model: this.userModel }],
       });
-      console.log(results);
       return res.json(results);
     } catch (err) {
       console.log(err);
@@ -60,7 +62,6 @@ class DesignController {
   // Retrieve designs based on theme
   async getDesignofTheme(req, res) {
     const { themeId } = req.params;
-    console.log(themeId);
     try {
       const designs = await this.themeModel.findByPk(themeId, {
         include: [
@@ -84,7 +85,6 @@ class DesignController {
   // Retrieve designs based on user_id
   async getDesignofUser(req, res) {
     const { userId } = req.params;
-    console.log(userId);
     try {
       const designs = await this.designModel.findAll({
         where: {
