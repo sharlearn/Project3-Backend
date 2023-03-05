@@ -3,6 +3,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+
+    // as previously mentioned, each of these should have its own migration
     await queryInterface.createTable("users", {
       id: {
         allowNull: false,

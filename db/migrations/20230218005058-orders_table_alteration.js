@@ -6,6 +6,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+  // this is one change, this is the only correct migration!
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn("orders", "status", {
       type: Sequelize.STRING,

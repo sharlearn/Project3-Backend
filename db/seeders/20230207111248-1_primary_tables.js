@@ -3,6 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    // nice use of bulkinsert!
     await queryInterface.bulkInsert("users", [
       {
         id: "a4ac0d81-5389-4fd8-8b06-1827d376c777",

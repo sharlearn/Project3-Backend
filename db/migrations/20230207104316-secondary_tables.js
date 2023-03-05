@@ -52,7 +52,7 @@ module.exports = {
         },
         allowNull: false,
       },
-      design_name: {
+      design_name: { // no validation used here unfortunately :D! Ideally we have validation in the model (code layer), but also on the database layer
         type: Sequelize.STRING,
         allowNull: false,
       },

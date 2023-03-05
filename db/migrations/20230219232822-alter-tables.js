@@ -5,6 +5,7 @@ const { QueryTypes } = require("sequelize");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    // each change one migration!
     await queryInterface.createTable("design_colours", {
       id: {
         type: Sequelize.INTEGER,
