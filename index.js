@@ -4,7 +4,10 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT;
 const { auth } = require("express-oauth2-jwt-bearer");
+// let's place imports all on top of the file
+const db = require("./db/models/index");
 
+// I think auth related code can go into its own file
 const checkJwt = auth({
   audience: process.env.AUDIENCE,
   issuerBaseURL: process.env.ISSUER_BASEURL,
@@ -15,8 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// importing DB
-const db = require("./db/models/index");
+// importing DB // redundant comment
 
 const {
   user,

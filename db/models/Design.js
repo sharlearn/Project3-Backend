@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       design_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
+        validate: { // nice use of validate here, is that also added on the migration? I shall see :)!
           len: [1, 50],
           notNull: { msg: "Please enter a design name" },
         },

@@ -18,6 +18,7 @@ class OrderController {
   }
 
   // //Retrieve all orders
+  // same as for designController
   async getAllOrders(req, res) {
     try {
       const output = await this.orderModel.findAll({
@@ -68,8 +69,16 @@ class OrderController {
   }
 
   //Add one order
+  // Since this is quite the complex create, not using BaseController is fine here
   async addOneOrder(req, res) {
     const { userId, totalPrice, deliveryAddress, chosenDesigns } = req.body;
+
+    // I think we should definitely check if all these values are defined, and if not return some kind of error. We call this validation
+
+    //simple one:
+    if (!userId || !totalPrice || !deliveryAddress || !chosenDesigns) return res.status(400).json("Invalid Request Body")
+
+    // As we do n creates and k finds here, we should wrap all this into a transaction. What if the first create works, but on second create there is an error. The code would go into the catch error, but the first create would remain. With a transaction it would rollback that first create as well.
     try {
       const [userAddress, created] = await this.userAddressModel.findOrCreate({
         where: { address: deliveryAddress, user_id: userId },
@@ -84,23 +93,27 @@ class OrderController {
         status: "pending",
       });
       for (const design of chosenDesigns) {
-        const addedDesign = await this.designModel.findByPk(design.designId);
+        // By right this validation should happen before we find and create here
+        const { designId, colourId, quantity, size } = design;
+        if (!designId || !colourId || !quantity || !size) return res.status(400).json("Invalid Request Body")
 
-        const addedColour = await this.colourModel.findByPk(design.colourId);
+        const addedDesign = await this.designModel.findByPk(designId);
+
+        const addedColour = await this.colourModel.findByPk(colourId);
 
         await addedDesign.setColours(addedColour);
 
         const designColourId = await this.designColourModel.findOne({
           where: {
-            design_id: design.designId,
-            colour_id: design.colourId,
+            design_id: designId,
+            colour_id: colourId,
           },
         });
 
         await this.orderedDesignModel.create({
           order_id: order.dataValues.id,
-          quantity: design.quantity,
-          size: design.size,
+          quantity: quantity,
+          size: size,
           design_colours_id: designColourId.dataValues.id,
         });
       }

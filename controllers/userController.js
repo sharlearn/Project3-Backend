@@ -29,6 +29,7 @@ class UserController extends BaseController {
     const { userId } = req.params;
     try {
       const user = await this.userModel.findByPk(userId);
+      // consider not returning email addresses here, sensitive data
       return res.json(user);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -39,6 +40,7 @@ class UserController extends BaseController {
   async getAllUsers(req, res) {
     try {
       const output = await this.userModel.findAll();
+      // definitely don't return ids and email addresses here for security purposes!
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -59,9 +61,10 @@ class UserController extends BaseController {
       });
 
       if (created) {
+        // consider not returning email addresses here, sensitive data
         return res.json({ user: user, msg: "new user created" });
       }
-
+      // consider not returning email addresses here, sensitive data
       return res.json({ user: user, msg: "user found" });
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
